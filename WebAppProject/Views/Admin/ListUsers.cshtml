@@ -1,0 +1,36 @@
+﻿@model List<UserRoleViewModel>
+
+<h2 class="text-danger">Administration Panel</h2>
+
+<h4>Users list</h4>
+<hr />
+@foreach (var user in Model)
+{
+    <div class="card mb-3">
+        <div class="card header">
+            User : @user.UserName
+        </div>
+        <div class="card-body">
+            <h6 class="card-title">User Roles:</h6>
+            <label>@user.RoleName</label>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-primary" asp-action="EditRole"
+               asp-controller="Admin" asp-route-id="">Edit</a>
+            <a href="#" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+}
+    @*<div class="card mb-3">
+        <div class="card header">
+            User : ;
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"></h5>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-primary" asp-action="EditRole"
+               asp-controller="Admin" asp-route-id="">Edit</a>
+            <a href="#" class="btn btn-danger">Delete</a>
+        </div>
+    </div>*@

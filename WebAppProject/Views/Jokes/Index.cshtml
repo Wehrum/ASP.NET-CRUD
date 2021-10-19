@@ -1,0 +1,60 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<WebAppProject.Models.Joke>
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Jokes";
+}
+
+<h1>Welcome to Jokes</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@*<p>
+        <b>Jokes</b>
+    </p>*@
+@*@if (true)
+{
+    <b>test</b>
+    @User.IsInRole("Admin")
+}*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <b>Jokes:</b>
+            </th>
+            <th>
+                <b>Posted By:</b>
+            </th>
+            @if (User.IsInRole("Moderator"))
+            {
+                <th>
+                    <b>Mod View:</b>
+                </th>
+            }
+            </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+
+        {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.JokeQuestion)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            @if (User.IsInRole("Moderator"))
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>

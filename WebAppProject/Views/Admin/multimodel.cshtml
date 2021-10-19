@@ -1,0 +1,29 @@
+﻿@model dynamic
+
+<h2 class="text-danger">Administration Panel</h2>
+
+<h4>Users list</h4>
+<hr />
+
+@foreach (var list in Model.ListRoles)
+{
+    <h1>@list.role</h1>
+}
+@*@foreach (var user in Model)
+    {
+        <div class="card mb-3">
+            <div class="card header">
+                User : @user.Username;
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-primary" asp-action="EditRole"
+                   asp-controller="Admin" asp-route-id="">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+
+    }*@
+
