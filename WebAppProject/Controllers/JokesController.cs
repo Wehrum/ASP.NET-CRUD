@@ -79,6 +79,41 @@ namespace WebAppProject.Controllers
             return View(joke);
         }
 
+        //Voting System
+        //[Authorize]
+        [HttpPost, ActionName("Vote")]
+        public async Task<IActionResult> Vote(int id)
+        {
+            var joke = await _context.Joke.FindAsync(id);
+            if (id != joke.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    joke.Vote += 1;
+                    _context.Update(joke);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!JokeExists(joke.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(joke);
+        }
+
         // GET: Jokes/Edit/5
         [Authorize(Roles = "Administrator,Moderator")]
         public async Task<IActionResult> Edit(int? id)
