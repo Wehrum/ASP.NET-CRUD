@@ -1,2 +1,8 @@
 
 WebAppProject/appsettings.json
+
+.vs/
+
+WebAppProject/bin/Debug/net5.0/appsettings.json
+
+WebAppProject/obj/
