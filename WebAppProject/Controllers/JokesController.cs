@@ -80,7 +80,7 @@ namespace WebAppProject.Controllers
         }
 
         //Voting System
-        //[Authorize]
+        [Authorize]
         [HttpPost, ActionName("Vote")]
         public async Task<IActionResult> Vote(int id)
         {
@@ -95,6 +95,40 @@ namespace WebAppProject.Controllers
                 try
                 {
                     joke.Vote += 1;
+                    _context.Update(joke);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!JokeExists(joke.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(joke);
+        }
+
+        [Authorize]
+        [HttpPost, ActionName("DownVote")]
+        public async Task<IActionResult> DownVote(int id)
+        {
+            var joke = await _context.Joke.FindAsync(id);
+            if (id != joke.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    joke.Vote -= 1;
                     _context.Update(joke);
                     await _context.SaveChangesAsync();
                 }
