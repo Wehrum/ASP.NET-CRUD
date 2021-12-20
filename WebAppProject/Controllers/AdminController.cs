@@ -114,22 +114,37 @@ namespace GettingStarted.Controllers
                 }
                 else
                 {
-                    if (userRolesName.Count == 1)
+                    string name = "";
+                    for(int i = 0; i < userRolesName.Count; i++)
                     {
-                        roles.RoleName = userRolesName[0];
+                        if (userRolesName.Count == 1)
+                        {
+                            name += $"{userRolesName[i]}";
+                        }
+                        else
+                        {
+                            name += $"{userRolesName[i]} | ";
+                        }
                     }
-                    else if (userRolesName.Count == 2)
-                    {
-                        roles.RoleName = $"{userRolesName[0]} | {userRolesName[1]}";
-                    }
-                    else if (userRolesName.Count == 3)
-                    {
-                        roles.RoleName = $"{userRolesName[0]} | {userRolesName[1]} | {userRolesName[2]}";
-                    }
-                    //for (int i = 0; i < userRolesName.Count; i++)
-                    //{
-                    //}
-                    //    userview.RoleName = resultstring;
+                    roles.RoleName = name;
+                    #region old code
+                    /*if (userRolesName.Count == 1)
+                               {
+                                   roles.RoleName = userRolesName[0];
+                               }
+                               else if (userRolesName.Count == 2)
+                               {
+                                   roles.RoleName = $"{userRolesName[0]} | {userRolesName[1]}";
+                               }
+                               else if (userRolesName.Count == 3)
+                               {
+                                   roles.RoleName = $"{userRolesName[0]} | {userRolesName[1]} | {userRolesName[2]}";
+                               }
+                               //for (int i = 0; i < userRolesName.Count; i++)
+                               //{
+                               //}
+                               //    userview.RoleName = resultstring;*/ 
+                    #endregion
                 }
 
                 model.Add(roles);

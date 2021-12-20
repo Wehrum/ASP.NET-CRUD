@@ -6,6 +6,7 @@ namespace WebAppProject.Models
         public string UserID { get; set; }
         public string JokeQuestion { get; set; }
         public string JokeAnswer { get; set; }
+        public int Vote { get; set; }
 
         public Joke()
         {
