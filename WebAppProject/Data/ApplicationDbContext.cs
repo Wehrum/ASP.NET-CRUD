@@ -16,5 +16,6 @@ namespace WebAppProject.Data
         public DbSet<WebAppProject.Models.AssemblyInfo> AssemblyInfo { get; set; }
         public DbSet<WebAppProject.Models.Joke> Joke { get; set; }
         public DbSet<WebAppProject.Models.ProjectRole> Admin { get; set; }
+        public DbSet<WebAppProject.Models.ClickIt> ClickIt { get; set; }
     }
 }
